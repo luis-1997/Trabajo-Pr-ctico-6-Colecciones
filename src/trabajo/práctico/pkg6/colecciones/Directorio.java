@@ -81,11 +81,22 @@ public class Directorio {
 
     }
 
-    public void borrarCliente(long telefono) {
+    public void borrarCliente(String dni) {
+        //HashSet<Long> telefonos = new HashSet<>();
 
-        dir.remove(telefono);
+        Set<Long> tels = dir.keySet();
+        Iterator it = tels.iterator();
 
-        System.out.println("EL cliente fue removido o borrado.");
+        while (it.hasNext()) {// le puse barras porque si no , no lo elimina
+            Long telefono = (Long) it.next();
+            Cliente c = dir.get(telefono);
+            if (dir.get(telefono).getDni() == dni) {
+                dir.remove(telefono);
+                System.out.println("El Numero telefonico de: " + dni + " es: " + telefono + " Fue borrado");
+
+                break;
+            }
+        }
 
     }
 
